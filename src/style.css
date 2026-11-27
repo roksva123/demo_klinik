@@ -1,3 +1,4 @@
+/* Fonts are preconnected and preloaded from index.html; keep the CSS import as a resilient fallback. */
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 
 :root {
@@ -22,7 +23,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: auto; overflow-x: hidden; }
+html { scroll-behavior: auto; overflow-x: clip; max-width: 100vw; }
 body {
   margin: 0;
   min-width: 320px;
@@ -31,7 +32,8 @@ body {
   font-family: var(--sans);
   font-size: var(--fs-body);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100vw;
 }
 body.modal-open { overflow: hidden; }
 a { color: inherit; text-decoration: none; }
@@ -386,8 +388,32 @@ input:focus, textarea:focus { border-color: var(--clay); }
   .hero-meta { margin-top: 26px; }
 }
 
+@media (max-width: 767px) {
+  .desktop-nav { display: none; }
+}
+
 @media (max-width: 639px) {
-  .hero-title { font-size: clamp(3.5rem, 13vh, 5.6rem); }
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: calc(100% - 32px);
+    max-width: 100%;
+    padding: 6px 8px 6px 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .wordmark { flex-shrink: 1; min-width: 0; white-space: nowrap; font-size: clamp(1.25rem, 5.5vw, 1.5rem); }
+  .header-actions { flex-shrink: 0; gap: 6px; min-width: 0; }
+  .button-small { flex-shrink: 0; min-height: 44px; padding: 0 14px; gap: 7px; font-size: .9375rem; }
+  .button-small i { font-size: .95rem; }
+  .menu-toggle { flex: 0 0 44px; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; gap: 0; }
+  .menu-toggle span { display: none; }
+  .menu-toggle b { gap: 4px; }
+  .hero { max-width: 100%; overflow-x: clip; }
+  .hero-title { max-width: 100%; font-size: clamp(2.75rem, 13.5vw, 9rem); line-height: .95; overflow-wrap: anywhere; hyphens: manual; }
+  .hero-title i { display: inline-block; max-width: 100%; white-space: nowrap; font-size: clamp(2.5rem, 12.5vw, 9rem); }
   .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-actions .button, .contact .button { width: 100%; }
   .hero-actions .text-link { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
