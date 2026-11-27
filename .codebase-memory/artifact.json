@@ -1,0 +1,11 @@
+{
+    "schema_version": 2,
+    "commit": "",
+    "indexed_at": "2026-11-27T05:53:13Z",
+    "project": "demo-klinik",
+    "nodes": 2,
+    "edges": 1,
+    "original_size": 2293760,
+    "compressed_size": 3206,
+    "compression_level": 9
+}
